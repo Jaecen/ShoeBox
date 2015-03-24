@@ -1,0 +1,12 @@
+﻿#Entries td {
+	width: 4em;
+}
+
+#Entries td:nth-child(3) {
+	width: auto;
+}
+
+#CardImage {
+	max-width: 100%;
+	height: 600px;
+}

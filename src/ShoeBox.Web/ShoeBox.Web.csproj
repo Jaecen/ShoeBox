@@ -57,6 +57,9 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="fonts\keyrune.eot" />
+    <Content Include="fonts\keyrune.ttf" />
+    <Content Include="fonts\keyrune.woff" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -65,8 +68,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="app.js" />
+    <Content Include="css\app.css" />
+    <Content Include="css\keyrune.min.css" />
+    <Content Include="fonts\keyrune.svg" />
     <Content Include="Index.html" />
+    <Content Include="scripts\app.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
