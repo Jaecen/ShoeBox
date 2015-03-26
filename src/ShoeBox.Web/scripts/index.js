@@ -1,5 +1,6 @@
 ﻿$(document).ready(initApp);
 
+var cardDbUrl = 'http://mtgjson.com/json/AllSets.json';
 var cardImageUrlPrefix = 'http://auren:8082/';
 var cardImageUrlPostfix = '.xlhq.jpg';
 var selection = null;
@@ -8,7 +9,7 @@ var lastEntry = null;
 
 function initApp() {
 	console.log('Fetching DB');
-	$.getJSON('http://mtgjson.com/json/AllSets.json')
+	$.getJSON(cardDbUrl)
 		.then(function(data) {
 			console.log('DB loaded');
 			initUi(data, JSON.parse(localStorage.getItem(collectionKey)) || {});

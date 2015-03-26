@@ -57,9 +57,17 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="components\cardSearchBox.jsx" />
+    <None Include="components\entry.jsx" />
+    <Content Include="components\entryList.jsx" />
+    <None Include="components\setSelector.jsx" />
     <Content Include="fonts\keyrune.eot" />
     <Content Include="fonts\keyrune.ttf" />
     <Content Include="fonts\keyrune.woff" />
+    <Content Include="app.html" />
+    <Content Include="scripts\index.js" />
+    <Content Include="components\cardImage.jsx" />
+    <Content Include="components\app.jsx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -71,8 +79,7 @@
     <Content Include="css\app.css" />
     <Content Include="css\keyrune.min.css" />
     <Content Include="fonts\keyrune.svg" />
-    <Content Include="Index.html" />
-    <Content Include="scripts\app.js" />
+    <Content Include="index.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
