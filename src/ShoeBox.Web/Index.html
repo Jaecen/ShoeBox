@@ -25,21 +25,27 @@
 	<script src="components/setSelector.jsx" type="text/jsx"></script>
 	<script src="components/cardSearchBox.jsx" type="text/jsx"></script>
 	<script src="components/entryList.jsx" type="text/jsx"></script>
-	<script src="components/entry.jsx" type="text/jsx"></script>
-	
+
 	<script type="text/jsx">
 		(function(configuration) {
 			$.getJSON(configuration.cardDbUrl )
 				.then(function(data) {
-					var collection = JSON.parse(localStorage.getItem(configuration.collectionLocalStorageKey)) || {};
+					var collection = JSON.parse(localStorage.getItem(configuration.collectionLocalStorageKey))
+						|| { };
 					React.render(
-						<App db={data} collection={collection} />,
+						<App
+							db={data}
+							collection={collection}
+							imageUrlPrefix={configuration.imageUrlPrefix}
+							imageUrlPostfix={configuration.imageUrlPostfix} />,
 						document.getElementById('appContainer')
 					);
 				});
 		}({
 			cardDbUrl: 'http://mtgjson.com/json/AllSets.json',
-			collectionLocalStorageKey: 'collection'
+			collectionLocalStorageKey: 'collection',
+			imageUrlPrefix: 'http://auren:8082/',
+			imageUrlPostfix: '.xlhq.jpg'
 		}));
 	</script>
 </body>

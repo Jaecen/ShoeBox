@@ -1,25 +1,36 @@
 var CardSelector = React.createClass({
-	getInitialState: function() {
+	getDefaultProps: function() {
 		return {
-			selectedSet: Object.keys(this.props.db).pop(),
-			selectedCard: ''
+			onChanged: function() { },
+			onCommitted: function() { }
 		};
 	},
 
-	handleSetChanged: function(set) {
-		this.setState({selectedSet: this.props.db[event.target.value]});
+	handleSetChanged: function(event) {
+		this.props.onChanged({
+			set: event.set,
+			card: null,
+			index: null
+		})
 	},
 
 	handleCardChanged: function(event) {
-	},
-
-	handleCardIncremented: function(event) {
-	},
-
-	handleCardDecremented: function(event) {
+		this.props.onChanged({
+			set: this.props.set,
+			card: event.card,
+			index: event.index
+		});
 	},
 
 	handleCardCommitted: function(event) {
+		if(this.props.card)
+			this.props.onCommitted({
+				set: this.props.set,
+				card: this.props.card,
+				index: this.props.index,
+				isFoil: event.isFoil,
+				isPromo: event.isPromo
+			});
 	},
 
 	render: function() {
@@ -27,14 +38,14 @@ var CardSelector = React.createClass({
 			<div>
 				<SetSelector
 					sets={this.props.db}
-					selection={this.state.selectedSet}
+					set={this.props.set}
 					onChanged={this.handleSetChanged} />
 
 				<CardSearchBox
-					selection={this.state.selectedCard}
+					set={this.props.set}
+					card={this.props.card}
+					index={this.props.index}
 					onChanged={this.handleCardChanged}
-					onIncremented={this.handleCardIncremented}
-					onDecremented={this.handleCardDecremented}
 					onCommitted={this.handleCardCommitted} />
 			</div>
 		);
