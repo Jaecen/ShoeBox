@@ -1,0 +1,27 @@
+{
+  "name": "ShoeBox",
+  "version": "0.1.0",
+  "homepage": "https://github.com/Jaecen/ShoeBox",
+  "authors": [
+    "Jaecen <jason@addington.com>"
+  ],
+  "description": "MTG collection manager",
+  "main": "index.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src/bower_components/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.4",
+    "es6-promise": "~2.0.1",
+    "fetch": "~0.7.0",
+    "react": "~0.13.1",
+    "lodash": "~3.6.0"
+  },
+  "private": true
+}
