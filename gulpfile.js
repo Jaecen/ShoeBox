@@ -1,6 +1,3 @@
-var gulp = require('./gulp')([
-	'browserify'
-]);
+var requireDir = require('require-dir');
 
-gulp.task('build', ['browserify']);
-gulp.task('default', ['build']);
+requireDir('./gulp/tasks', { recurse: true });
