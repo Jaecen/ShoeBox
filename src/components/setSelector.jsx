@@ -24,7 +24,7 @@ module.exports = React.createClass({
 		return (
 			<div className="form-group">
 				<label>Set:</label>
-				<select className="form-control" value={this.props.set.code} onChange={this.handleChange}>
+				<select className="form-control" value={this.props.set ? this.props.set.code : null} onChange={this.handleChange}>
 					{options}
 				</select>
 			</div>

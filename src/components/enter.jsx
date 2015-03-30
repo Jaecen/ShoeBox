@@ -3,19 +3,26 @@ var _ = require('lodash');
 var CardSelector = require('./cardSelector.jsx');
 var EntryList = require('./entryList.jsx');
 var CardImage = require('./cardImage.jsx');
+var EntryStore = require('../stores/EntryStore.js');
 
 module.exports = React.createClass({
 	getInitialState: function() {
-		return {
-			set: this.props.db[Object.keys(this.props.db).pop()],
-			card: null,
-			index: null,
-			entries: [],
-			entryIndex: 0
-		};
+		return EntryStore.getState();
 	},
 
-	handleCardChanged: function(event) {
+	componentDidMount: function() {
+		EntryStore.listen(this.onChange);
+	},
+
+	componentWillUnmount: function() {
+		EntryStore.unlisten(this.onChange);
+	},
+
+	onChange: function() {
+		this.setState(this.getInitialState())
+	},
+
+	/*handleCardChanged: function(event) {
 		this.setState({
 			set: event.set,
 			card: event.card,
@@ -49,7 +56,7 @@ module.exports = React.createClass({
 			entries: entries,
 			entryIndex: this.state.entryIndex + 1
 		});
-	},
+	},*/
 
 	render: function() {
 		return (
