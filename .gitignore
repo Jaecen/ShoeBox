@@ -6,3 +6,5 @@ x64/
 [Bb]in/
 [Oo]bj/
 lib/packages/
+src/app.bundled.js
+node_modules

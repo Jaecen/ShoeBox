@@ -1,4 +1,8 @@
-var CardSelector = React.createClass({
+var React = require('react');
+var SetSelector = require('./setSelector.jsx');
+var CardSearchBox = require('./cardSearchBox.jsx');
+
+module.exports = React.createClass({
 	getDefaultProps: function() {
 		return {
 			onChanged: function() { },

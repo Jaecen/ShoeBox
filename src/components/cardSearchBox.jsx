@@ -1,4 +1,6 @@
-﻿var CardSearchBox = React.createClass({
+var React = require('react');
+
+module.exports = React.createClass({
 	getDefaultProps: function() {
 		return {
 			onCommitted: function() { },

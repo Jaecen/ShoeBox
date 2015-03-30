@@ -1,4 +1,7 @@
-﻿var EntryList = React.createClass({
+var React = require('react');
+var _ = require('lodash');
+
+module.exports = React.createClass({
 	render: function() {
 		var entryRows = _.clone(this.props.entries)
 			.reverse()

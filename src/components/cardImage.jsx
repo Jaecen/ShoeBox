@@ -1,4 +1,6 @@
-﻿var CardImage = React.createClass({
+var React = require('react');
+
+module.exports = React.createClass({
 	handleError: function(event) {
 		// Should try to use just card.name
 	},

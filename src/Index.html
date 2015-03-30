@@ -15,39 +15,6 @@
 
 	<script src="bower_components/jquery/dist/jquery.js"></script>
 	<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-	<script src="bower_components/react/react.js"></script>
-	<script src="bower_components/react/JSXTransformer.js"></script>
-	<script src="bower_components/lodash/lodash.js"></script>
-	<script src="bower_components/fetch/fetch.js"></script>
-
-	<script src="components/app.jsx" type="text/jsx"></script>
-	<script src="components/cardImage.jsx" type="text/jsx"></script>
-	<script src="components/cardSelector.jsx" type="text/jsx"></script>
-	<script src="components/setSelector.jsx" type="text/jsx"></script>
-	<script src="components/cardSearchBox.jsx" type="text/jsx"></script>
-	<script src="components/entryList.jsx" type="text/jsx"></script>
-
-	<script type="text/jsx">
-		(function(configuration) {
-			$.getJSON(configuration.cardDbUrl )
-				.then(function(data) {
-					var collection = JSON.parse(localStorage.getItem(configuration.collectionLocalStorageKey))
-						|| { };
-					React.render(
-						<App
-							db={data}
-							collection={collection}
-							imageUrlPrefix={configuration.imageUrlPrefix}
-							imageUrlPostfix={configuration.imageUrlPostfix} />,
-						document.getElementById('appContainer')
-					);
-				});
-		}({
-			cardDbUrl: 'http://mtgjson.com/json/AllSets.json',
-			collectionLocalStorageKey: 'collection',
-			imageUrlPrefix: 'http://auren:8082/',
-			imageUrlPostfix: '.xlhq.jpg'
-		}));
-	</script>
+	<script src="app.bundled.js"></script>
 </body>
 </html>
