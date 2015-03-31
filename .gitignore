@@ -7,4 +7,5 @@ x64/
 [Oo]bj/
 lib/packages/
 src/app.bundled.js
+src/app.bundled.js.map
 node_modules
