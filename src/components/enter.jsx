@@ -1,37 +1,63 @@
 var React = require('react');
 var _ = require('lodash');
+
+var EntryStore = require('../stores/entryStore.js');
+var CardStore = require('../stores/cardStore.js');
+var SelectionStore = require('../stores/selectionStore.js');
+
+var SelectionActions = require('../actions/selectionActions.js');
+
 var CardSelector = require('./cardSelector.jsx');
 var EntryList = require('./entryList.jsx');
 var CardImage = require('./cardImage.jsx');
-var EntryStore = require('../stores/EntryStore.js');
+
+var Configuration = require('../configuration.js');
 
 module.exports = React.createClass({
 	getInitialState: function() {
-		return EntryStore.getState();
+		return {
+			entryStore: EntryStore.getState(),
+			cardStore: CardStore.getState(),
+			selectionStore: SelectionStore.getState(),
+		};
 	},
 
 	componentDidMount: function() {
-		EntryStore.listen(this.onChange);
+		EntryStore.listen(this.onEntryStoreChange);
+		CardStore.listen(this.onCardStoreChange);
+		SelectionStore.listen(this.onSelectionStoreChange);
 	},
 
 	componentWillUnmount: function() {
-		EntryStore.unlisten(this.onChange);
+		EntryStore.unlisten(this.onEntryStoreChange);
+		CardStore.unlisten(this.onCardStoreChange);
+		SelectionStore.unlisten(this.onSelectionStoreChange);
 	},
 
-	onChange: function() {
-		this.setState(this.getInitialState())
-	},
-
-	/*handleCardChanged: function(event) {
+	onEntryStoreChange: function() {
 		this.setState({
-			set: event.set,
-			card: event.card,
-			index: event.index
+			entryStore: EntryStore.getState()
 		});
 	},
 
+	onCardStoreChange: function() {
+		this.setState({
+			cardStore: CardStore.getState()
+		});
+	},
+
+	onSelectionStoreChange: function() {
+		this.setState({
+			selectionStore: SelectionStore.getState()
+		});
+	},
+
+	handleCardChanged: function(event) {
+		SelectionActions.selectCard(event);
+	},
+
 	handleCardCommitted: function(event) {
-		var entries = this.state.entries;
+		/*var entries = this.state.entries;
 		var lastEntry = _.last(entries);
 		var quantity = 1;
 		if(lastEntry && lastEntry.set == event.set.code && lastEntry.number == event.card.number && lastEntry.isFoil === event.isFoil && lastEntry.isPromo == event.isPromo) {
@@ -55,8 +81,8 @@ module.exports = React.createClass({
 		this.setState({
 			entries: entries,
 			entryIndex: this.state.entryIndex + 1
-		});
-	},*/
+		});*/
+	},
 
 	render: function() {
 		return (
@@ -65,22 +91,22 @@ module.exports = React.createClass({
 				<div className="row">
 					<div className="col-md-6">
 						<CardSelector
-							db={this.props.db}
-							set={this.state.set}
-							card={this.state.card}
-							index={this.state.index}
+							sets={this.state.cardStore.sets}
+							set={this.state.selectionStore.set}
+							card={this.state.selectionStore.card}
+							index={this.state.selectionStore.index}
 							onChanged={this.handleCardChanged}
 							onCommitted={this.handleCardCommitted} />
 						<div>
-							<EntryList entries={this.state.entries} />
+							<EntryList entries={this.state.entryStore.entries} />
 						</div>
 					</div>
 					<div className="col-md-6">
 						<CardImage
-							prefix={this.props.imageUrlPrefix}
-							postfix={this.props.imageUrlPostfix}
-							set={this.state.set}
-							card={this.state.card} />
+							prefix={Configuration.imageUrlPrefix}
+							postfix={Configuration.imageUrlPostfix}
+							set={this.state.selectionStore.set}
+							card={this.state.selectionStore.card} />
 					</div>
 				</div>
 			</div>

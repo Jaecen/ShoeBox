@@ -41,7 +41,7 @@ module.exports = React.createClass({
 		return (
 			<div>
 				<SetSelector
-					sets={this.props.db}
+					sets={this.props.sets}
 					set={this.props.set}
 					onChanged={this.handleSetChanged} />
 

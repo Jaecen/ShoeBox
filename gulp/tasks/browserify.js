@@ -1,15 +1,24 @@
 var gulp = require('gulp');
-var browserify = require('browserify');
+var gutil = require('gulp-util');
+var sourcemaps = require('gulp-sourcemaps');
 var source = require('vinyl-source-stream');
+var buffer = require('vinyl-buffer');
+var watchify = require('watchify');
+var browserify = require('browserify');
 
-gulp.task('browserify', function() {
-	return browserify({
-			entries: ['./src/app.js'],
-			extensions: ['.jsx']
-		})
-		.bundle()
-		//Pass desired output filename to vinyl-source-stream
+var bundler = watchify(browserify(watchify.args));
+bundler.add('./src/app.js');
+
+gulp.task('js', bundle);
+bundler.on('update', bundle); // on any dep update, runs the bundler
+bundler.on('log', gutil.log); // output build logs to terminal
+
+function bundle() {
+	return bundler.bundle()
+		.on('error', gutil.log.bind(gutil, 'Browserify Error'))
 		.pipe(source('app.bundled.js'))
-		// Start piping stream to tasks!
+			.pipe(buffer())
+			.pipe(sourcemaps.init({loadMaps: true})) // loads map from browserify file
+			.pipe(sourcemaps.write('./', {sourceRoot: './'}))
 		.pipe(gulp.dest('./src/'));
-});
+}

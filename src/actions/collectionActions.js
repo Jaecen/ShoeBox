@@ -1,5 +1,4 @@
-var Alt = require('alt');
-var alt = new Alt();
+var alt = require('../alt.js');
 
 class CollectionActions {
 }

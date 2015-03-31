@@ -3,7 +3,7 @@ var _ = require('lodash');
 
 module.exports = React.createClass({
 	render: function() {
-		var entryRows = _.clone(this.props.entries)
+		var entryRows = _.clone(this.props.entries || [])
 			.reverse()
 			.map(function(entry) {
 				return <tr key={entry.index}>

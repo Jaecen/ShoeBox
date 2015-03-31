@@ -1,19 +1,15 @@
-var Alt = require('alt');
+var alt = require('../alt.js');
 var CardActions = require('../actions/cardActions.js');
-
-var alt = new Alt();
 
 class CardStore {
 	constructor() {
-		this.db = null;
+		this.sets = null;
 
-		this.bindListeners({
-			handleLoadCards: CardActions.LOAD_CARDS
-		});
+		this.bindAction(CardActions.updateCards, this.onUpdateCards);
 	}
 
-	handleLoadCards(cards) {
-		this.db = cards;
+	onUpdateCards(cards) {
+		this.sets = cards;
 	}
 }
 

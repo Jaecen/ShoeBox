@@ -1,10 +1,9 @@
-var Alt = require('alt');
+var alt = require('../alt.js');
 var CollectionActions = require('../actions/collectionActions.js');
-
-var alt = new Alt();
 
 class CollectionStore {
 	constructor() {
+		this.collection = JSON.parse(localStorage.getItem(Configuration.collectionLocalStorageKey)) || { };
 	}
 }
 

@@ -14,12 +14,13 @@ module.exports = React.createClass({
 	},
 
 	render: function() {
-		var sets = this.props.sets;
+		var sets = this.props.sets || {};
+
 		var options =	Object
-			.keys(sets)
-			.map(function(set, index) {
-				return <option key={index} value={sets[set].code}>{sets[set].name}</option>
-			});
+				.keys(sets)
+				.map(function(set, index) {
+					return <option key={index} value={sets[set].code}>{sets[set].name}</option>
+				});
 
 		return (
 			<div className="form-group">

@@ -1,13 +1,9 @@
-var Alt = require('alt');
-var alt = new Alt();
+var alt = require('../alt.js');
 
 class EntryActions {
-	addEntry(entry) {
-		this.dispatch(entry);
-	}
-
-	selectCard(selection) {
-		this.dispatch(selection);
+	constructor() {
+		this.generateActions(
+			'addEntry');
 	}
 }
 
