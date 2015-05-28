@@ -1,0 +1,7 @@
+.vs/
+artifacts/
+src/ShoeBox.Web/wwwroot/bin/
+src/ShoeBox.Web/wwwroot/build/
+src/ShoeBox.Web/node_modules/
+*.user
+src/ShoeBox.Web/project.lock.json

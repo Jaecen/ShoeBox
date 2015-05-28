@@ -1,0 +1,17 @@
+{
+	"version": "1.0.0",
+	"name": "ShoeBox.Web",
+	"private": true,
+	"dependencies": {
+		"alt": "~0.16.6"
+	},
+	"devDependencies": {
+		"gulp": "~3.8.11",
+		"vinyl-source-stream": "~1.1.0",
+		"browserify": "~10.2.1",
+		"babelify": "~6.1.1",
+		"watchify": "~3.2.1",
+		"main-bower-files": "~2.8.0",
+		"react": "~0.13.3"
+	}
+}
