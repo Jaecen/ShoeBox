@@ -9,7 +9,18 @@ namespace ShoeBox.Web.Api
 		{
 			return new ObjectResult(new[]
 			{
-				"c1", "c2"
+				new
+				{
+					name = "Card the First"
+				},
+				new
+				{
+					name = "Second Card"
+				},
+				new
+				{
+					name = "Three"
+				},
 			});
 		}
 	}

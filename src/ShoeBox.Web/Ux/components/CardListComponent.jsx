@@ -1,38 +1,40 @@
 ﻿import React from 'react';
 import CardListStore from '../stores/CardListStore';
 
-var CardListComponent = React.createClass({
-	
+let CardListComponent = React.createClass({
 	getInitialState() {
-		console.log('CList init state');
+		let { cards, filter, state, status } = CardListStore.getState();;
 		
-		let { cards, filters } = CardListStore.getState();
-		console.log(cards, filters);
-		return { cards, filters };
+		return { 
+			cards, 
+			filter, 
+			state, 
+			status 
+		};
 	},
 
 	componentDidMount() {
-		CardListStore.listen(this.onCardListUpdated)
+		CardListStore.listen(this.onChange)
 	},
 
 	componentWillUnmount() {
-		CardListStore.unlisten(this.onCardListUpdated)
+		CardListStore.unlisten(this.onChange)
 	},
 
-	onCardListUpdated() {
-		let { cards, filters } = CardListStore.getState();
-		this.setState( { cards, filters } );
+	onChange(updatedState) {
+		console.log("CList onChange", updatedState);
+		let { cards, filter, state, status } = updatedState;
+		this.setState({ cards, filter, state, status });
 	},
 
 	render() {
-		console.log('CList render');
-
+		console.log('CList render', this.state);
 		return (
 			<ul> { 
-				this.state.cards.map((card) => {
-					console.log('CList', card);
+				this.state.cards.map((card, index) => {
+					console.log('CList render', card);
 					return (
-						<li>{ card.name }</li>
+						<li key={index}>{ card.name }</li>
 					);
 				})
 			} </ul>
