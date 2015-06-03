@@ -1,11 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using Microsoft.AspNet.Builder;
-using Microsoft.AspNet;
-using Microsoft.AspNet.Mvc;
-using Microsoft.AspNet.Http;
 using Microsoft.Framework.DependencyInjection;
 using Newtonsoft.Json;
+using ShoeBox.Web.Api;
 
 namespace ShoeBox.Web
 {
@@ -14,27 +12,17 @@ namespace ShoeBox.Web
 		// For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
 		public void ConfigureServices(IServiceCollection services)
 		{
-			var serializedSets = LoadSerializedSets();
+			var cardDataLoader = new CardDataLoader();
+			var cardData = cardDataLoader.LoadCardData(@"D:\Downloads\AllSetsArray-x.json");
 
 			services
-				.AddSingleton(c => new Services.CardSearch(serializedSets))
+				.AddSingleton(c => new Api.Services.CardSearch(cardData))
 				.AddMvc();
 		}
 
 		public void Configure(IApplicationBuilder app)
 		{
-			app
-				.UseMvc();
-		}
-
-		IEnumerable<SerializedSet> LoadSerializedSets()
-		{
-			var serializer = new JsonSerializer();
-
-			using(var stream = new FileStream(@"D:\Downloads\AllSetsArray-x.json", FileMode.Open))
-			using(var textReader = new StreamReader(stream))
-			using(var jsonReader = new JsonTextReader(textReader))
-				return serializer.Deserialize<SerializedSet[]>(jsonReader);
+			app.UseMvc();
 		}
 	}
 }

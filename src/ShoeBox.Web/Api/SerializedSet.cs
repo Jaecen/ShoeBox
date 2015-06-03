@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace ShoeBox.Web
+namespace ShoeBox.Web.Api
 {
-	class SerializedSet
+	public class SerializedSet
 	{
 		public string name
 		{ get; set; }
@@ -33,9 +33,6 @@ namespace ShoeBox.Web
 
 		public bool onlineOnly
 		{ get; set; }
-
-		//public ? booster		// An array of string's and/or string[]'s
-		//{ get; set; }
 
 		public SerializedCard[] cards
 		{ get; set; }

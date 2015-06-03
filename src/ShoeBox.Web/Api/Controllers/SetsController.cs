@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNet.Mvc;
 
-namespace ShoeBox.Web.Api
+namespace ShoeBox.Web.Api.Controllers
 {
 	[Route("[controller]")]
 	public class SetsController : Controller

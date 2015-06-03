@@ -1,8 +1,13 @@
-﻿namespace ShoeBox.Web
+﻿using System.Collections.Generic;
+
+namespace ShoeBox.Web.Api
 {
-	class SerializedCard
+	public class SerializedCard
 	{
 		public string name
+		{ get; set; }
+
+		public string[] names
 		{ get; set; }
 
 		public string manaCost
@@ -47,13 +52,38 @@
 		public string toughness
 		{ get; set; }
 
+		public int? loyalty
+		{ get; set; }
+
 		public string layout
 		{ get; set; }
 
-		public long multiverseid
+		public long? multiverseid
 		{ get; set; }
 
 		public string imageName
 		{ get; set; }
+
+		public bool reserved
+		{ get; set; }
+
+		public Dictionary<string, string> legalities
+		{ get; set; }
+
+		public string source
+		{ get; set; }
+
+		public long[] variations
+		{ get; set; }
+
+		public string watermark
+		{ get; set; }
+
+		public string border
+		{ get; set; }
+
+		public bool timeshifted
+		{ get; set; }
+
 	}
 }
