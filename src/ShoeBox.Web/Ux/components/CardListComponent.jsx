@@ -1,5 +1,6 @@
 ﻿import React from 'react';
 import CardListStore from '../stores/CardListStore';
+import CardListItem from '../components/CardListItemComponent.jsx'
 
 let CardListComponent = React.createClass({
 	getInitialState() {
@@ -34,7 +35,9 @@ let CardListComponent = React.createClass({
 				this.state.cards.map((card, index) => {
 					console.log('CList render', card);
 					return (
-						<li key={index}>{ card.name }</li>
+						<li key={index}>
+							<CardListItem name={ card.Card.Name } />
+						</li>
 					);
 				})
 			} </ul>

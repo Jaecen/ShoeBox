@@ -6,7 +6,7 @@ class CardListActions {
 		console.log('CLA filterChanged', filter);
 		this.dispatch();
 
-		fetch('cards')
+		fetch('cards?filter=[["name","=","Naturalize"]]')
 			.then(response => {
 				if(response.status !== 200) {
 					this.actions.listUpdateErrored({ 
@@ -18,7 +18,7 @@ class CardListActions {
 				response
 					.json()
 					.then(data => {
-						this.actions.listUpdated(data);
+						this.actions.listUpdated(data.result);
 					});
 			})
 			.catch(err => {
