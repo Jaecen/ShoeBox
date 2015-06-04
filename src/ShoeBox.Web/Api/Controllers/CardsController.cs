@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Mvc.ModelBinding;
@@ -21,7 +22,16 @@ namespace ShoeBox.Web.Api.Controllers
 
 		public IActionResult Get([FromQuery]Filter filter)
 		{
-			return new ObjectResult(filter);
+			var result = CardSearch
+				.Filter(filter.Query)
+				.ToArray();
+
+			return new ObjectResult(new
+			{
+				filter,
+				count = result.Count(),
+				result
+			});
 		}
 
 		[ModelBinder(BinderType = typeof(FilterModelBinder))]

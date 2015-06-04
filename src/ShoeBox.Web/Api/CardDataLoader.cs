@@ -22,9 +22,10 @@ namespace ShoeBox.Web.Api
 
 			var sets = new Dictionary<string, SetInfo>();
 			var cards = new Dictionary<string, CardInfo>();
-			var printings = new Dictionary<Tuple<string, string>, PrintingInfo>();
+			var printings = new Dictionary<long, PrintingInfo>();
 			var splits = new List<HashSet<string>>();
-			var variations = new List<HashSet<long>>();
+			var variations = new Dictionary<Tuple<string, string>, HashSet<long>>();
+
 
 			foreach(var inSet in allSetsArray)
 			{
@@ -85,16 +86,17 @@ namespace ShoeBox.Web.Api
 						timeshifted: inCard.timeshifted,
 						source: inCard.source);
 
-					printings.Add(Tuple.Create(outSet.Name, outCard.Name), outPrinting);
 
-					if(inCard.multiverseid.HasValue && inCard.variations != null && inCard.variations.Any())
+					if(inCard.multiverseid.HasValue)
 					{
-						var hasDefinedVariations = variations
-							.Where(variation => variation.Contains(inCard.multiverseid.Value))
-							.Any();
+						if(!printings.ContainsKey(inCard.multiverseid.Value))
+							printings.Add(outPrinting.Multiverseid.Value, outPrinting);
 
-						if(!hasDefinedVariations)
-							variations.Add(new HashSet<long>(inCard.variations));
+						var variationKey = Tuple.Create(outSet.Name, outCard.Name);
+						if(!variations.ContainsKey(variationKey))
+							variations[variationKey] = new HashSet<long>();
+
+						variations[variationKey].Add(outPrinting.Multiverseid.Value);
 					}
 				}
 			}
